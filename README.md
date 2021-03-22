@@ -60,7 +60,13 @@ A script called **join.py** that joins the two datasets, writes out the combined
 
 1. Save the results by calling `.to_csv()` on `merged` with arguments `"join.csv"` and `index=False`. The `index` argument omits the index, which in this case is just the row number of data.
 
-1. Now start a new figure and create an empty set of axes by setting the tuple `fig, ax1` to the result of calling the Matplotlib function `plt.subplots()`. The variable `fig` will refer to the figure as a whole and variable `ax1` will be a blank set of axes for use in the plot. The distinction between `fig` and `ax1` is that in other situations a figure might include several panels, each on their own axes.
+1. Now start a new figure and create an empty set of axes by setting the tuple `fig, ax1` to the result of calling the Matplotlib function `plt.subplots()`. To avoid confusion, the call should look like this:
+
+    ```
+    fig, ax1 = plt.subplots()
+    ```
+
+    The variable `fig` will refer to the figure as a whole and variable `ax1` will be a blank set of axes for use in the plot. The distinction between `fig` and `ax1` is that in other situations a figure might include several panels, each with its own axes.
 
 1. Now draw box plots for electricity usage in each temperature bin. Call the `.boxplot()` method on `merged` with the following four arguments: `"usage"` (the Y variable), `by="tbin"` (the X variable), `ax=ax1` (put the graph on the `ax1` axes), and `grid=False` (turn off some unnecessary grid lines). Please note that this and the remaining commands for drawing this figure are all pure method calls and don't generate any variables. That is, they should be called like this: `name.method()` and *not* like this: `var = name.method()`.
 
