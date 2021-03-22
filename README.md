@@ -54,7 +54,7 @@ A script called **join.py** that joins the two datasets, writes out the combined
 
 1. Print the result of calling the `.value_counts()` method on the `"_merge"` column of `merged`. It will show the number of records that were in both datasets and the number that were only in the left dataset (`use`) or only in the right dataset (`weather`). In this exercise, expect that there will be some records that are not in both datasets. We'll leave all the records in but those with missing data won't show up in the plots later on.
 
-1. Now create a temperature bin variable that rounds the temperature to the nearest ten degrees. Set the `"tbin"` column of `weather` to the result of calling `.round(-1)` on the `"degrees"` column of `weather`. The -1 tells `.round()` to round to one digit to the left of the decimal point: that is, to the tens place.
+1. Now create a temperature bin variable that rounds the temperature to the nearest ten degrees. Set the `"tbin"` column of `merged` to the result of calling `.round(-1)` on the `"degrees"` column of `merged`. The -1 tells `.round()` to round to one digit to the left of the decimal point: that is, to the tens place.
 
 1. Check the results by printing the result of calling `.value_counts()` on the `"tbin"` column of `merged`. It should produce a small table with counts of records in the 80s, 70s, and so on.
 
