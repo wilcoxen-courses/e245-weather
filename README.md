@@ -10,7 +10,7 @@ There are two input files: **use.csv**, which contains hourly electricity usage 
 
 ### Deliverables
 
-A script called **join.py** that joins the two datasets and plots two figures, **by_temp.png** and **by_month.png**.
+A script called **join.py** that joins the two datasets, writes out the combined data as **join.csv**, and plots two figures, **by_temp.png** and **by_month.png**.
 
 ### Instructions
 
@@ -44,6 +44,8 @@ A script called **join.py** that joins the two datasets and plots two figures, *
 
 1. Set column `"hour"` in `weather` to `date.dt.hour`.
 
+1. Set column `dow` in `weather` to `date.dt.dayofweek`. This will be the day of the week, where 0 indicates Monday and 6 indicates Sunday. It would be useful in a regression because electricity use usually varies with the day of the week.
+
 1. Next, read in the usage data by setting `use` to the result of calling `pd.read_csv()` on `"use.csv"`.
 
 1. Create a list called `join_keys` that consists of the three strings that together identify the hour of the year: `"month"`, `"day"` and `"hour"`.
@@ -56,9 +58,11 @@ A script called **join.py** that joins the two datasets and plots two figures, *
 
 1. Check the results by printing the result of calling `.value_counts()` on the `"tbin"` column of `merged`. It should produce a small table with counts of records in the 80s, 70s, and so on.
 
+1. Save the results by calling `.to_csv()` on `merged` with arguments `"join.csv"` and `index=False`. The `index` argument omits the index, which in this case is just the row number of data.
+
 1. Now start a new figure and create an empty set of axes by setting the tuple `fig, ax1` to the result of calling the Matplotlib function `plt.subplots()`. The variable `fig` will refer to the figure as a whole and variable `ax1` will be a blank set of axes for use in the plot. The distinction between `fig` and `ax1` is that in other situations a figure might include several panels, each on their own axes.
 
-1. Now draw box plots for electricity usage in each temperature bin. Call the `.boxplot()` method on `merged` with the following four arguments: `"usage"` (the Y variable), `by="tbin"` (the X variable), `ax=ax1` (put the graph on the `ax1` axes), and `grid=False` (turn off some unnecessary grid lines). Please note that this and the remaining commands in the script are all pure method calls and don't generate any variables. That is, they should be called like this: `name.method()` and *not* like this: `var = name.method()`.
+1. Now draw box plots for electricity usage in each temperature bin. Call the `.boxplot()` method on `merged` with the following four arguments: `"usage"` (the Y variable), `by="tbin"` (the X variable), `ax=ax1` (put the graph on the `ax1` axes), and `grid=False` (turn off some unnecessary grid lines). Please note that this and the remaining commands for drawing this figure are all pure method calls and don't generate any variables. That is, they should be called like this: `name.method()` and *not* like this: `var = name.method()`.
 
 1. Call the `.suptitle()` method on `fig` with the argument `"Usage by Temperature"` to set the figure's title.
 
