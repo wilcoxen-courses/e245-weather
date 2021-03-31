@@ -50,7 +50,7 @@ A script called **join.py** that joins the two datasets, writes out the combined
 
 1. Create a list called `join_keys` that consists of the three strings that together identify the hour of the year: `"month"`, `"day"` and `"hour"`.
 
-1. Now merge the two datasets using a one-to-one outer join. Set `merged` equal to the result of calling the `.merge()` method on `use` with the following arguments: `weather`, `on=join_keys`, `how="outer"`, `validate="1:1"` and `indicator="_merge"`.
+1. Now merge the two datasets using a one-to-one outer join. Set `merged` equal to the result of calling the `.merge()` method on `use` with the following arguments: `weather`, `on=join_keys`, `how="outer"`, `validate="1:1"` and `indicator=True`.
 
 1. Print the result of calling the `.value_counts()` method on the `"_merge"` column of `merged`. It will show the number of records that were in both datasets and the number that were only in the left dataset (`use`) or only in the right dataset (`weather`). In this exercise, expect that there will be some records that are not in both datasets. We'll leave all the records in but those with missing data won't show up in the plots later on.
 
