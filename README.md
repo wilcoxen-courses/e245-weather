@@ -62,7 +62,7 @@ A script called **join.py** that joins the two datasets, writes out the combined
 
 1. Now start a new figure and create an empty set of axes by setting the tuple `fig1, ax1` to the result of calling `plt.subplots()` with `dpi=300`.
 
-1. Now draw box plots for electricity usage in each temperature bin. Call the `.boxplot()` method on `merged` with the following four arguments: `"usage"` (the Y variable), `by="tbin"` (the X variable), `ax=ax1` (put the graph on the `ax1` axes), and `grid=False` (turn off some unnecessary grid lines). Please note that this and the remaining commands for drawing this figure are all pure method calls and don't generate any variables. That is, they should be called like this: `name.method()` and _not_ like this: `var = name.method()`.
+1. Now draw box plots for electricity usage in each temperature bin. Call the `.boxplot()` method on `merged` with the following four arguments: `"usage"` (the Y variable), `by="tbin"` (the X variable), `ax=ax1` (put the graph on the `ax1` axes), `grid=False` (turn off some unnecessary grid lines), and `showfliers=False` (turn off drawing of outliers). Please note that this and the remaining commands for drawing this figure are all pure method calls and don't generate any variables. That is, they should be called like this: `name.method()` and _not_ like this: `var = name.method()`.
 
 1. Call the `.suptitle()` method on `fig1` with the argument `"Usage by Temperature"` to set the figure's title.
 
@@ -74,8 +74,8 @@ A script called **join.py** that joins the two datasets, writes out the combined
 
 1. Call the `.savefig()` on `fig1` with the argument `"by_temp.png"`.
 
-1. Now create a box plot of usage by month. Repeat the steps above starting with `plt.subplots()` but use `"month"` as the by-variable in the box plot and adjust the `.suptitle()` and `.set_xlabel()` calls accordingly. Save the file as `"by_month.png"`.
+1. Now create a similar box plot of usage by month. Repeat the steps above starting with `plt.subplots()` but use `"month"` as the by-variable in the box plot and adjust the `.suptitle()` and `.set_xlabel()` calls accordingly. Save the file as `"by_month.png"`.
 
 ## Submitting
 
-Once you're happy with everything and have committed all of the changes to your local repository, please push the changes to GitHub. At that point, you're done: you have submitted your answer.
+* Once you're happy with everything and have committed all of the changes to your local repository, please push the changes to GitHub. At that point, you're done: you have submitted your answer.
