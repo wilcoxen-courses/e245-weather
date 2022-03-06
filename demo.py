@@ -1,8 +1,10 @@
-#! /bin/python3
-#
-#  Demonstrate types of joins and handling of duplicate data. Also show
-#  use of pd.to_datetime().
-#
+"""
+demo.py
+Spring 2022 PJW
+
+Demonstrate types of joins and handling of duplicate data. Also show
+use of pd.to_datetime().
+"""
 
 import pandas as pd
 
@@ -59,7 +61,7 @@ print( dup_rec.sort_values('TAX_ID') )
 flood = flood.drop_duplicates( subset='TAX_ID' )
 
 #
-#  Find and print the records that have had their duplcates removed
+#  Find and print the records that have had their duplicates removed
 #
 
 fixed = flood['TAX_ID'].isin( dup_rec['TAX_ID'] )
@@ -73,7 +75,7 @@ print( '\nduplicate flood records:', dups.sum() )
 #  Outer: keeps all records in both datasets
 #
 
-join_o = parcels.merge(flood, 
+join_o = parcels.merge(flood,
                       on="TAX_ID", 
                       how='outer', 
                       validate='1:1', 
@@ -87,7 +89,7 @@ print( '\nOuter:\n', join_o['_merge'].value_counts(), sep='' )
 #  Inner: only records in both
 #
 
-join_i = parcels.merge(flood, 
+join_i = parcels.merge(flood,
                       on="TAX_ID", 
                       how='inner', 
                       validate='1:1', 
@@ -104,7 +106,7 @@ print( '\nInner:\n', join_i['_merge'].value_counts(), sep='' )
 #  Left: keep all records in the left dataset
 #
 
-join_l = parcels.merge(flood, 
+join_l = parcels.merge(flood,
                       on="TAX_ID", 
                       how='left', 
                       validate='1:1', 
@@ -121,7 +123,7 @@ print( '\nLeft:\n', join_l['_merge'].value_counts(), sep='' )
 #  Right: keep all records in the right dataset
 #
 
-join_r = parcels.merge(flood, 
+join_r = parcels.merge(flood,
                       on="TAX_ID", 
                       how='right', 
                       validate='1:1', 
@@ -163,3 +165,4 @@ recs['day'] = date.dt.day
 recs['hour'] = date.dt.hour
 
 print( recs )
+
