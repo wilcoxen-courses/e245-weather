@@ -165,4 +165,3 @@ recs['day'] = date.dt.day
 recs['hour'] = date.dt.hour
 
 print( recs )
-
