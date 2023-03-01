@@ -16,11 +16,13 @@ A script called **join.py** that joins the two datasets, writes out the combined
 
 1. Import `pandas` as `pd` and `matplotlib.pyplot` as `plt`.
 
-1. Set `weather` to the result of calling `pd.read_csv()` on `"weather.csv"`.
+1. Set the default resolution for figures to `300` DPI.
 
-1. Create a dictionary called `fix_name` for streamlining one of the names in the weather file. It should have one key, `"Temperature (F)"`, and the key's value should be `"degrees"`.
+1. Set `weather` to the result of using `pd.read_csv()` to read `"weather.csv"`.
 
-1. Rename the temperature variable by setting `weather` to the result of calling the `.rename()` method on `weather` with the keyword argument `columns=fix_name`.
+1. Create a dictionary called `fix_name` for streamlining one of the names in the weather file. It should have one key, `"Temperature (F)"`, and the key's value should be `"degrees"`. Don't overlook the space in the original name.
+
+1. Rename the temperature variable by setting `weather` to the result of calling the `.rename()` method on `weather` with the keyword argument `columns=fix_name`. Be sure to check `weather.columns` before going on to make sure the change was successful.
 
 1. Now look for records with duplicated timestamps. Set `is_dup` to the result of calling the `.duplicated()` method on `weather` with two arguments: `subset="Local Hour"` and `keep=False`. The result will be a series of true and false values indicating whether there is another record with the same timestamp. The `keep=False` argument causes all records with identical timestamps to be considered duplicates. Without it, Pandas only considers the second and subsequent records as duplicates: that is, it does not consider the first record with a repeated timestamp to be a duplicate.
 
@@ -46,7 +48,7 @@ A script called **join.py** that joins the two datasets, writes out the combined
 
 1. Set column `dow` in `weather` to `date.dt.dayofweek`. This will be the day of the week, where 0 indicates Monday and 6 indicates Sunday. It would be useful in a regression because electricity use usually varies with the day of the week.
 
-1. Next, read in the usage data by setting `use` to the result of calling `pd.read_csv()` on `"use.csv"`.
+1. Next, read in the usage data by setting `use` to the result of using `pd.read_csv()` to read `"use.csv"`.
 
 1. Create a list called `join_keys` that consists of the three strings that together identify the hour of the year: `"month"`, `"day"` and `"hour"`.
 
@@ -60,7 +62,7 @@ A script called **join.py** that joins the two datasets, writes out the combined
 
 1. Save the results by calling `.to_csv()` on `merged` with arguments `"join.csv"` and `index=False`. The `index` argument omits the index, which in this case is just the row number of data.
 
-1. Now start a new figure and create an empty set of axes by setting the tuple `fig1, ax1` to the result of calling `plt.subplots()` with `dpi=300`.
+1. Now start a new figure and create an empty set of axes by setting the tuple `fig1, ax1` to the result of calling `plt.subplots()`.
 
 1. Now draw box plots for electricity usage in each temperature bin. Call the `.boxplot()` method on `merged` with the following four arguments: `"usage"` (the Y variable), `by="tbin"` (the X variable), `ax=ax1` (put the graph on the `ax1` axes), `grid=False` (turn off some unnecessary grid lines), and `showfliers=False` (turn off drawing of outliers). Please note that this and the remaining commands for drawing this figure are all pure method calls and don't generate any variables. That is, they should be called like this: `name.method()` and _not_ like this: `var = name.method()`.
 
@@ -72,9 +74,9 @@ A script called **join.py** that joins the two datasets, writes out the combined
 
 1. Call the `.set_xlabel()` method on `ax1` with argument `"Temperature Bin"` to set the X axis label.
 
-1. Call the `.savefig()` on `fig1` with the argument `"by_temp.png"`.
+1. Call `.tight_layout()` on the figure as usual and then use `.savefig()` to save the figure as `"by_temp.png"`.
 
-1. Now create a similar box plot of usage by month. Repeat the steps above starting with `plt.subplots()` but use `"month"` as the by-variable in the box plot and adjust the `.suptitle()` and `.set_xlabel()` calls accordingly. Save the file as `"by_month.png"`.
+1. Now create a similar box plot of usage by month. Repeat the steps above starting with `plt.subplots()` but use `"month"` as the by-variable in the box plot and adjust the `.suptitle()` and `.set_xlabel()` calls accordingly. Tighten the layout and then save the file as `"by_month.png"`.
 
 ## Submitting
 

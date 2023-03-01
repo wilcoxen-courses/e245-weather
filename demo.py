@@ -29,7 +29,7 @@ print( dups )
 #  How many? Summing a boolean variable adds up the True values
 #
 
-print( '\nduplicate parcels:', dups.sum() ) 
+print( '\nduplicate parcels:', dups.sum() )
 
 #%%
 #
