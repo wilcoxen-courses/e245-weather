@@ -46,9 +46,17 @@ print( flood )
 #
 #  Duplicates?
 #
+#  The duplicated() method returns a boolean series with True for
+#  duplicated records and False for others.
+#
+#  The keep=False argument means that all duplicates are marked as True. Other
+#  options are keep='first' and keep='last', which mark all EXCEPT the first
+#  or last duplicate as True. Those are used for deleting all but one of the
+#  duplicates, often through a boolean selection like raw[dup==False].
+#
 
 dups = flood.duplicated( subset='TAX_ID', keep=False )
-print( '\nduplicate flood records:', dups.sum() ) 
+print( '\nduplicate flood records:', dups.sum() )
 
 dup_rec = flood[ dups ]
 print( dup_rec.sort_values('TAX_ID') )
@@ -68,7 +76,7 @@ fixed = flood['TAX_ID'].isin( dup_rec['TAX_ID'] )
 print( flood[ fixed ] )
 
 dups = flood.duplicated( subset='TAX_ID', keep=False )
-print( '\nduplicate flood records:', dups.sum() ) 
+print( '\nduplicate flood records:', dups.sum() )
 
 #%%
 #
@@ -76,9 +84,9 @@ print( '\nduplicate flood records:', dups.sum() )
 #
 
 join_o = parcels.merge(flood,
-                      on="TAX_ID", 
-                      how='outer', 
-                      validate='1:1', 
+                      on="TAX_ID",
+                      how='outer',
+                      validate='1:1',
                       indicator=True)
 
 print( '\nOuter records:', len(join_o) )
@@ -90,9 +98,9 @@ print( '\nOuter:\n', join_o['_merge'].value_counts(), sep='' )
 #
 
 join_i = parcels.merge(flood,
-                      on="TAX_ID", 
-                      how='inner', 
-                      validate='1:1', 
+                      on="TAX_ID",
+                      how='inner',
+                      validate='1:1',
                       indicator=True)
 
 print( len(join_i) )
@@ -107,9 +115,9 @@ print( '\nInner:\n', join_i['_merge'].value_counts(), sep='' )
 #
 
 join_l = parcels.merge(flood,
-                      on="TAX_ID", 
-                      how='left', 
-                      validate='1:1', 
+                      on="TAX_ID",
+                      how='left',
+                      validate='1:1',
                       indicator=True)
 
 print( len(join_l) )
@@ -124,9 +132,9 @@ print( '\nLeft:\n', join_l['_merge'].value_counts(), sep='' )
 #
 
 join_r = parcels.merge(flood,
-                      on="TAX_ID", 
-                      how='right', 
-                      validate='1:1', 
+                      on="TAX_ID",
+                      how='right',
+                      validate='1:1',
                       indicator=True)
 
 print( len(join_r) )
@@ -140,9 +148,9 @@ print( '\nRight:\n', join_r['_merge'].value_counts(), sep='' )
 #  Default: does inner if how isn't given
 #
 
-join_d = parcels.merge(flood, 
-                      on="TAX_ID", 
-                      validate='1:1', 
+join_d = parcels.merge(flood,
+                      on="TAX_ID",
+                      validate='1:1',
                       indicator=True)
 
 print( len(join_d) )
