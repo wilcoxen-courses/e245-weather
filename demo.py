@@ -83,11 +83,8 @@ print( '\nduplicate flood records:', dups.sum() )
 #  Outer: keeps all records in both datasets
 #
 
-join_o = parcels.merge(flood,
-                      on="TAX_ID",
-                      how='outer',
-                      validate='1:1',
-                      indicator=True)
+join_o = parcels.merge(flood, how='outer', on="TAX_ID",
+                      validate='1:1', indicator=True)
 
 print( '\nOuter records:', len(join_o) )
 print( '\nOuter:\n', join_o['_merge'].value_counts(), sep='' )
@@ -97,11 +94,8 @@ print( '\nOuter:\n', join_o['_merge'].value_counts(), sep='' )
 #  Inner: only records in both
 #
 
-join_i = parcels.merge(flood,
-                      on="TAX_ID",
-                      how='inner',
-                      validate='1:1',
-                      indicator=True)
+join_i = parcels.merge(flood, how='inner', on="TAX_ID",
+                      validate='1:1', indicator=True)
 
 print( len(join_i) )
 
@@ -114,11 +108,8 @@ print( '\nInner:\n', join_i['_merge'].value_counts(), sep='' )
 #  Left: keep all records in the left dataset
 #
 
-join_l = parcels.merge(flood,
-                      on="TAX_ID",
-                      how='left',
-                      validate='1:1',
-                      indicator=True)
+join_l = parcels.merge(flood, how='left', on="TAX_ID",
+                      validate='1:1', indicator=True)
 
 print( len(join_l) )
 
@@ -131,11 +122,8 @@ print( '\nLeft:\n', join_l['_merge'].value_counts(), sep='' )
 #  Right: keep all records in the right dataset
 #
 
-join_r = parcels.merge(flood,
-                      on="TAX_ID",
-                      how='right',
-                      validate='1:1',
-                      indicator=True)
+join_r = parcels.merge(flood, how='right', on="TAX_ID",
+                      validate='1:1', indicator=True)
 
 print( len(join_r) )
 
